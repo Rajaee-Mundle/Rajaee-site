@@ -1,109 +1,10 @@
 (function () {
   "use strict";
 
-  /* ================= CONTENT (edit here) ================= */
-  var EMAIL = "mundle.rajaee@gmail.com";
-  var RESUME_PDF = "Rajaee_Mundle_Resume.pdf";
-
-  var PROJECTS = [
-    {
-      id: "p-fixtures", title: "Manufacturing Fixtures at SAF-HOLLAND", cat: "Manufacturing", when: "Jan to Aug 2024", where: "Woodstock, ON", status: "Internship",
-      blurb: "More than a dozen custom fixtures taken from concept to production on a trailer-component plant floor.",
-      did: [
-        "Designed and executed 12+ custom manufacturing fixtures from concept to production, including a spacer weld fixture that used a fixed-point datum to align axles by part number.",
-        "Developed and modelled 3 landing gear weld fixtures and a specialized trailer foot fixture to streamline plant assembly.",
-        "Worked with a team of 6 millwrights on hands-on fabrication, installation and real-time troubleshooting of the newly designed fixtures.",
-        "Ran cycle-time optimization studies on manual loading stations and introduced design updates to reduce structural rework on defective axles."
-      ],
-      spec: [["Fixtures delivered", "12+"], ["Landing gear weld fixtures", "3"], ["Millwrights on the build", "6"], ["Role", "Manufacturing Engineer Intern"]],
-      tools: ["SolidWorks", "AutoCAD", "GD&T", "DFM", "Fixture design"]
-    },
-    {
-      id: "p-weld-cell", title: "Robotic Weld Cell: Table and Layout", cat: "Manufacturing", when: "2024", where: "SAF-HOLLAND, Woodstock, ON", status: "Internship",
-      blurb: "A modular weld table with interchangeable fixtures, plus a floor layout for a 16 ft by 16 ft cell.",
-      did: [
-        "Engineered a multipurpose, modular weld table for a Panasonic robotic weld cell, with 3 interchangeable fixtures that handle several plant components and their geometric variations.",
-        "Laid out a 16 ft by 16 ft weld cell in AutoCAD, placing the new welding gear, protective curtains and a separation barrier for the sandblaster to use the floor space efficiently."
-      ],
-      spec: [["Cell footprint", "16 ft x 16 ft"], ["Interchangeable fixtures", "3"], ["Robot", "Panasonic"], ["Layout tool", "AutoCAD"]],
-      tools: ["SolidWorks", "AutoCAD", "Robotic welding", "Modular tooling"]
-    },
-    {
-      id: "p-presses", title: "Hydraulic Press Overhaul", cat: "Manufacturing", when: "2024", where: "SAF-HOLLAND, Woodstock, ON", status: "Internship",
-      blurb: "Legacy hydraulic presses rebuilt with modern safety features and heavier structure.",
-      did: [
-        "Led the physical overhaul of legacy hydraulic presses.",
-        "Integrated modern safety features and structural enhancements so the presses could run as high-capacity, heavy-duty machines."
-      ],
-      spec: [["Scope", "Safety and structure"], ["Equipment", "Legacy hydraulic presses"], ["Setting", "Production plant"]],
-      tools: ["Mechanical design", "Safety systems", "Structural reinforcement"]
-    },
-    {
-      id: "p-welding-fixture", title: "Landing Gear Foot Welding Fixture", cat: "Design", when: "Design and manufacturing project", where: "University of Guelph", status: "Academic project",
-      blurb: "A reverse-engineered production fixture with repeatable locating and clamping.",
-      did: [
-        "Reverse-engineered a heavy-duty production welding fixture for trailer landing gear feet.",
-        "Designed locating features and repeatable clamping mechanisms in SolidWorks to hold tight machining tolerances, with the aim of removing manual setup variation and alignment deviation."
-      ],
-      spec: [["Tolerance target", "±0.075 in"], ["Part", "Landing gear foot"], ["Modelled in", "SolidWorks"]],
-      tools: ["SolidWorks", "Tooling & fixtures", "Automated weld cells", "GD&T"]
-    },
-    {
-      id: "p-compactor", title: "Scale-Model Compactor Bin", cat: "Mechatronics", when: "Lab project", where: "University of Guelph", status: "Academic project",
-      blurb: "A touchless, sensor-activated waste compactor, from CAD and FEA through wiring to a load test.",
-      did: [
-        "Engineered an automated, sensor-activated household waste compaction prototype around an Arduino Uno R3, an HC-SR04 ultrasonic sensor and two Miuzei MG90S servo motors, for fully touchless operation.",
-        "Modelled a 3-part enclosure (base, head housing, inner can) in SolidWorks and managed the dynamic clearances so the compression plate does not bind.",
-        "Ran a static structural FEA study with a 900 N distributed load to find peak von Mises stress and check the PLA structure.",
-        "Built a 12 V DC power system with an 18 AWG safety fuse, a BTS7960 high-current H-bridge motor driver and a 12 V to 5 V buck converter for signal regulation.",
-        "3D printed every custom structural part and tested the prototype under load, where it crushed aluminum cans."
-      ],
-      spec: [["FEA load case", "900 N distributed"], ["Peak local stress", "304.2 MPa (von Mises)"], ["Supply", "12 V DC, 18 AWG fuse"], ["Motor driver", "BTS7960 H-bridge"], ["Controller", "Arduino Uno R3"], ["Material", "PLA (3D printed)"]],
-      tools: ["SolidWorks", "FEA", "Arduino IDE", "3D printing", "Electronics"]
-    },
-    {
-      id: "p-gryphon", title: "Gryphon Racing Aerodynamics", cat: "Racing", when: "Sept 2021 to Jun 2026", where: "Guelph Gryphon Formula SAE", status: "Team role",
-      blurb: "Nearly five years on the Formula SAE team, leading aerodynamics and building carbon fibre parts by hand.",
-      did: [
-        "Co-led the aerodynamics group of 40+ members, coordinating off-site development meetings and timelines to deliver 3 aerodynamic kit designs.",
-        "Led hands-on composite manufacturing: the tooling, layup and structural assembly of carbon fibre nosecones, sidepods and wings.",
-        "Owned the geometry of the vehicle sidepods and radiator shrouds, integrating them with powertrain cooling requirements and passing all formal technical inspections.",
-        "Supported vehicle manufacturing and assembly, including structural mounts, and learned vehicle integration and design workflow from senior team members."
-      ],
-      spec: [["Team size led", "40+"], ["Aero kit designs", "3"], ["Time on team", "Sept 2021 to Jun 2026"], ["Parts", "Nosecone, sidepods, wings"]],
-      tools: ["Composites", "Carbon fibre layup", "Mould preparation", "Vehicle integration"]
-    },
-    {
-      id: "p-turbofan", title: "Turbofan Engine Model", cat: "Simulation", when: "Started Oct 2026", where: "Personal project", status: "In progress",
-      blurb: "A model-and-simulation-only turbofan, built one component at a time, starting from a commercial engine.",
-      did: [
-        "Building a fully model-based engine in SolidWorks, one component at a time, with Ansys CFD for the flow.",
-        "The first engine follows the layout of a CFM56-7B commercial turbofan, with fan blade design as the first piece of blade work.",
-        "Planned second engine: a military low-bypass fighter engine, with the fan designed from the ground up.",
-        "The CAD also doubles as a 3D-printable scale model, so parts have proper fastening and mating features."
-      ],
-      spec: [["Engine 1", "Commercial turbofan"], ["Engine 2", "Low-bypass fighter engine"], ["CAD", "SolidWorks"], ["Flow analysis", "Ansys CFD"], ["Status", "In progress"]],
-      tools: ["SolidWorks", "Ansys", "CFD", "Cycle analysis", "3D printing"]
-    }
-  ];
-  var CATS = ["All", "Manufacturing", "Design", "Mechatronics", "Racing", "Simulation"];
-
-  /* What is happening right now. start = YYYY-MM-DD. Add or remove entries freely. */
-  var NOW = [
-    {
-      title: "Turbofan Engine Model", start: "2026-10-08", link: "p-turbofan", tag: "In progress",
-      text: [
-        "A full engine, built only in software. I am modelling a commercial turbofan in SolidWorks one component at a time and running the flow through each part in Ansys.",
-        "Fan blade design comes first. After the commercial engine, I want to design a low-bypass fighter engine fan from the ground up."
-      ]
-    },
-    {
-      title: "This website", start: "2026-11-02", link: "", tag: "Just launched",
-      text: [
-        "A home for my projects, my resume and the things I am learning. It is built with a vibe coding workflow, and I am using it to learn how a real site fits together."
-      ]
-    }
-  ];
+  /* The site engine: pages, routing, filters. Content lives in data/content.js and games/*.js. */
+  var S = window.SITE;
+  var EMAIL = S.EMAIL, RESUME_PDF = S.RESUME_PDF, PROJECTS = S.PROJECTS, CATS = S.CATS, NOW = S.NOW;
+  var GAMES = window.GAMES || [];
 
   /* ================= helpers ================= */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -121,77 +22,6 @@
   var viewEl = document.getElementById("view");
   var filter = "All";
   var cleanup = null;
-
-  /* ================= GAMES ================= */
-  /* Each game: id (starts with g-), title, started, status, blurb, learned[], mount(box) -> cleanup fn. */
-  function starfall(box) {
-    var W = 720, H = 420;
-    var c = document.createElement("canvas"); c.width = W; c.height = H; c.className = "gcanvas";
-    c.setAttribute("aria-label", "Starfall game"); box.appendChild(c);
-    var g = c.getContext("2d");
-    var px = W / 2, target = W / 2, score = 0, lives = 5, orbs = [], state = "ready", best = 0, raf = 0, last = 0, spawn = 0, keys = {};
-    try { best = +localStorage.getItem("starfall-best") || 0; } catch (e) {}
-    function reset() { score = 0; lives = 5; orbs = []; spawn = 0; state = "play"; }
-    function aim(e) { var r = c.getBoundingClientRect(); target = (e.clientX - r.left) / r.width * W; }
-    c.addEventListener("pointermove", aim);
-    c.addEventListener("pointerdown", function (e) { aim(e); if (state !== "play") reset(); });
-    function kd(e) {
-      keys[e.key] = true;
-      if (e.key === " " || e.key === "Enter") { if (state !== "play") reset(); }
-      if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === " ") e.preventDefault();
-    }
-    function ku(e) { keys[e.key] = false; }
-    window.addEventListener("keydown", kd); window.addEventListener("keyup", ku);
-    function text(s, x, y, size, col) { g.fillStyle = col || "#e6ecff"; g.font = size + "px 'JetBrains Mono', monospace"; g.textAlign = "center"; g.fillText(s, x, y); }
-    function step(t) {
-      var dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t;
-      if (state === "play") {
-        if (keys.ArrowLeft) target -= 520 * dt;
-        if (keys.ArrowRight) target += 520 * dt;
-        target = Math.max(50, Math.min(W - 50, target));
-        spawn -= dt;
-        if (spawn <= 0) { orbs.push({ x: 30 + Math.random() * (W - 60), y: -10, v: 90 + Math.min(score, 40) * 5 + Math.random() * 60, r: 7 + Math.random() * 4 }); spawn = Math.max(0.28, 0.9 - score * 0.015); }
-        for (var i = orbs.length - 1; i >= 0; i--) {
-          var o = orbs[i]; o.y += o.v * dt;
-          if (o.y > H - 34 && o.y < H - 12 && Math.abs(o.x - px) < 56) { score++; orbs.splice(i, 1); }
-          else if (o.y > H + 12) { lives--; orbs.splice(i, 1); if (lives <= 0) { state = "over"; if (score > best) { best = score; try { localStorage.setItem("starfall-best", String(best)); } catch (e) {} } } }
-        }
-      }
-      px += (target - px) * Math.min(1, dt * 14);
-      g.clearRect(0, 0, W, H);
-      g.fillStyle = "rgba(8,14,40,.55)"; g.fillRect(0, 0, W, H);
-      orbs.forEach(function (o) {
-        var gr = g.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 3.2);
-        gr.addColorStop(0, "rgba(230,236,255,1)"); gr.addColorStop(0.3, "rgba(143,166,240,.7)"); gr.addColorStop(1, "rgba(143,166,240,0)");
-        g.fillStyle = gr; g.beginPath(); g.arc(o.x, o.y, o.r * 3.2, 0, 6.2832); g.fill();
-      });
-      g.strokeStyle = "#8fa6f0"; g.lineWidth = 3; g.lineCap = "round";
-      g.beginPath(); g.moveTo(px - 46, H - 22); g.quadraticCurveTo(px, H - 44, px + 46, H - 22); g.stroke();
-      g.fillStyle = "rgba(143,166,240,.9)"; g.textAlign = "left"; g.font = "13px 'JetBrains Mono', monospace";
-      g.fillText("CAUGHT " + score + "   BEST " + best, 14, 24);
-      g.textAlign = "right"; g.fillText("LIVES " + new Array(lives + 1).join("• "), W - 14, 24);
-      if (state === "ready") { text("Starfall", W / 2, H / 2 - 18, 34); text("Catch the falling stars. Move the pointer, or use the arrow keys.", W / 2, H / 2 + 16, 14, "#cfd8f6"); text("Tap or press space to start", W / 2, H / 2 + 44, 13, "#8f9bc7"); }
-      if (state === "over") { text("The sky is quiet", W / 2, H / 2 - 12, 30); text("You caught " + score + ". Tap or press space to try again.", W / 2, H / 2 + 24, 14, "#cfd8f6"); }
-      raf = requestAnimationFrame(step);
-    }
-    raf = requestAnimationFrame(step);
-    return function () { cancelAnimationFrame(raf); window.removeEventListener("keydown", kd); window.removeEventListener("keyup", ku); };
-  }
-
-  var GAMES = [
-    {
-      id: "g-starfall", title: "Starfall", started: "2026-11-02", status: "Starter game",
-      blurb: "A quiet catch-the-stars game on a canvas. It is the template the next games will grow from.",
-      learned: [
-        "The game loop: redraw the screen about 60 times a second with requestAnimationFrame, and move things by elapsed time so it plays the same on any screen.",
-        "State: a game is always in one state (ready, playing, over), and every frame behaves differently depending on which.",
-        "Collision: catching a star is a distance check between two shapes.",
-        "Difficulty: stars fall faster and spawn more often as the score climbs.",
-        "Input: the same game answers to a mouse, a finger or the arrow keys."
-      ],
-      mount: starfall
-    }
-  ];
 
   /* ================= views ================= */
   function projectCard(p) {
@@ -304,7 +134,7 @@
       return '<a class="card" href="#' + g.id + '"><div class="meta"><span>' + esc(g.status) + '</span><span>' + (d === 0 ? "Today" : plural(d) + " old") + '</span></div><h3>' + esc(g.title) + '</h3><p>' + esc(g.blurb) + '</p><span class="more">Play it &rarr;</span></a>';
     }).join("");
     return '<section class="view"><p class="eyebrow">Games</p><h2>Games I build to learn programming</h2>' +
-      '<p class="lede">Every game here is something I vibe coded to understand one more piece of programming. Each page lists what the game taught me.</p>' +
+      '<p class="lede">This is where the games I vibe code will live. Each one is a way to learn another piece of programming, and each page lists what that game teaches.</p>' +
       '<div class="grid" style="margin-top:40px">' + cards + '</div></section>';
   }
 
@@ -315,7 +145,7 @@
     return '<section class="view"><a class="back" href="#games">&larr; All games</a>' +
       '<div class="detail-head"><p class="eyebrow">' + esc(g.status) + '</p><h2>' + esc(g.title) + '</h2><p class="lede" style="margin-top:10px">' + esc(g.blurb) + '</p></div>' +
       '<div class="stage"><div class="stagebox" id="stagebox"></div><p class="hint">Click or tap to start. Move the pointer, or use the left and right arrow keys.</p></div>' +
-      '<div class="detail-grid" style="grid-template-columns:minmax(0,1fr)"><div><h3>What I learned building it</h3><ul class="did">' + learned + '</ul></div></div>' + pager + '</section>';
+      '<div class="detail-grid" style="grid-template-columns:minmax(0,1fr)"><div><h3>What this code teaches</h3><ul class="did">' + learned + '</ul></div></div>' + pager + '</section>';
   }
 
   function contact() {
@@ -366,56 +196,4 @@
     }
   });
   render();
-
-  /* ================= night sky ================= */
-  var cv = document.getElementById("sky"), cx = cv.getContext("2d");
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var W = 0, H = 0, dpr = 1, stars = [], mx = 0, my = 0, tx = 0, ty = 0, shoot = null, nextShoot = 6000;
-
-  function seed() {
-    var n = Math.round(Math.min(220, (W * H) / 9000));
-    stars = [];
-    for (var i = 0; i < n; i++) {
-      var d = Math.random();
-      stars.push({ x: Math.random() * W, y: Math.random() * H, z: 0.25 + d * 0.9, r: 0.3 + d * 1.25, p: Math.random() * 6.28, s: 0.4 + Math.random() * 1.4, v: 0.012 + d * 0.03 });
-    }
-  }
-  function size() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth; H = window.innerHeight;
-    cv.width = W * dpr; cv.height = H * dpr;
-    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    seed();
-  }
-  window.addEventListener("resize", size);
-  window.addEventListener("pointermove", function (e) { tx = (e.clientX / W - 0.5); ty = (e.clientY / H - 0.5); }, { passive: true });
-
-  function frame(t) {
-    mx += (tx - mx) * 0.03; my += (ty - my) * 0.03;
-    cx.clearRect(0, 0, W, H);
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      if (!reduce) { s.y -= s.v; if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; } }
-      var a = reduce ? 0.7 : 0.45 + 0.4 * Math.sin(t / 1000 * s.s + s.p);
-      var px = s.x - mx * 26 * s.z, py = s.y - my * 18 * s.z;
-      cx.globalAlpha = Math.max(0.1, a) * (0.4 + s.z * 0.6);
-      cx.fillStyle = "#e6ecff";
-      cx.beginPath(); cx.arc(px, py, s.r, 0, 6.2832); cx.fill();
-    }
-    cx.globalAlpha = 1;
-    if (!reduce) {
-      if (!shoot && t > nextShoot) { shoot = { x: Math.random() * W * 0.7 + W * 0.2, y: Math.random() * H * 0.35, life: 0 }; nextShoot = t + 14000 + Math.random() * 20000; }
-      if (shoot) {
-        shoot.life += 1; var k = shoot.life / 55;
-        var x = shoot.x + k * 220, y = shoot.y + k * 90;
-        var g = cx.createLinearGradient(x, y, x - 90, y - 36);
-        g.addColorStop(0, "rgba(230,236,255," + (0.8 * (1 - k)) + ")"); g.addColorStop(1, "rgba(230,236,255,0)");
-        cx.strokeStyle = g; cx.lineWidth = 1.4; cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x - 90, y - 36); cx.stroke();
-        if (k >= 1) shoot = null;
-      }
-      requestAnimationFrame(frame);
-    }
-  }
-  size();
-  requestAnimationFrame(frame);
 })();
